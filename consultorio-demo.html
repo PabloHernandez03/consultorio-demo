@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dra. Valeria Mora — Medicina General & Preventiva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0B2545;
+      --navy-mid: #1B3A6B;
+      --teal: #0D7377;
+      --teal-light: #14A085;
+      --teal-muted: #E6F4F1;
+      --sky: #EEF6FB;
+      --white: #FFFFFF;
+      --text-dark: #0B2545;
+      --text-body: #3D5166;
+      --text-muted: #7A94AB;
+      --border: rgba(11,37,69,0.1);
+      --shadow-sm: 0 2px 12px rgba(11,37,69,0.07);
+      --shadow-md: 0 8px 32px rgba(11,37,69,0.1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--text-body);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+    .logo-mark {
+      width: 38px; height: 38px;
+      background: var(--navy);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .logo-text { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--navy); line-height: 1.2; }
+    .logo-text small { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); }
+
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem; font-weight: 500; color: var(--text-body);
+      text-decoration: none; letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    .btn { display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.88rem; transition: all 0.2s; text-decoration: none; }
+    .btn-primary { background: var(--teal); color: #fff; border: none; padding: 0.65rem 1.5rem; box-shadow: 0 4px 14px rgba(13,115,119,0.35); }
+    .btn-primary:hover { background: var(--teal-light); box-shadow: 0 6px 20px rgba(13,115,119,0.45); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--border); padding: 0.6rem 1.4rem; }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+    .btn-white { background: #fff; color: var(--navy); border: none; padding: 0.7rem 1.6rem; box-shadow: var(--shadow-md); }
+    .btn-white:hover { transform: translateY(-1px); box-shadow: 0 12px 36px rgba(11,37,69,0.15); }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--navy);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 580px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* decorative circles */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.05);
+      top: -100px; right: 280px;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.04);
+      bottom: -60px; left: 200px;
+      pointer-events: none;
+    }
+
+    .hero-text {
+      padding: 5rem 3rem 4.5rem 3rem;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(13,115,119,0.25);
+      color: #5DDBD5;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      border: 1px solid rgba(93,219,213,0.25);
+      width: fit-content;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge::before { content: '●'; font-size: 0.5rem; }
+
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.4rem; line-height: 1.1;
+      color: #fff;
+      margin-bottom: 1.4rem;
+    }
+    .hero-title em { color: #5DDBD5; font-style: italic; }
+
+    .hero-desc {
+      font-size: 1rem; line-height: 1.8; font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      max-width: 420px;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+    .hero-note {
+      margin-top: 3rem;
+      display: flex; align-items: center; gap: 1.2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-note-icon { font-size: 1.6rem; }
+    .hero-note-text { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
+    .hero-note-text strong { color: rgba(255,255,255,0.75); }
+
+    .hero-visual {
+      position: relative;
+      display: flex; align-items: flex-end; justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-card-stack {
+      position: relative;
+      padding: 4rem 2.5rem 0;
+      width: 100%;
+      display: flex; flex-direction: column; gap: 1rem; justify-content: center;
+      height: 100%;
+    }
+
+    .info-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      backdrop-filter: blur(8px);
+      animation: floatIn 0.6s ease both;
+    }
+    .info-card:nth-child(1) { animation-delay: 0.1s; }
+    .info-card:nth-child(2) { animation-delay: 0.25s; margin-left: 2rem; }
+    .info-card:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #5DDBD5; margin-bottom: 0.4rem; }
+    .card-value { font-size: 1rem; font-weight: 500; color: #fff; }
+    .card-sub { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 0.15rem; }
+    .card-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #3DCC8E; margin-right: 0.4rem; box-shadow: 0 0 6px #3DCC8E; }
+
+    /* ─── STATS ─── */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-cell {
+      padding: 2.2rem 2rem;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num { font-family: 'DM Serif Display', serif; font-size: 2.6rem; color: var(--navy); display: block; line-height: 1; margin-bottom: 0.3rem; }
+    .stat-label { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0.05em; }
+
+    /* ─── SECCIONES GENÉRICAS ─── */
+    section { padding: 5.5rem 3rem; }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.7rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem; color: var(--navy);
+      line-height: 1.2; margin-bottom: 0.6rem;
+    }
+    .section-sub {
+      font-size: 0.95rem; color: var(--text-muted);
+      font-weight: 300; line-height: 1.75;
+      max-width: 500px;
+    }
+
+    /* ─── SERVICIOS ─── */
+    .servicios-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .servicio-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem 1.6rem;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      cursor: default;
+    }
+    .servicio-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(13,115,119,0.25);
+    }
+
+    .servicio-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .ic-teal { background: var(--teal-muted); }
+    .ic-blue { background: #E8F0FB; }
+    .ic-soft { background: #FEF0E8; }
+
+    .servicio-nombre {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem; color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .servicio-desc {
+      font-size: 0.85rem; color: var(--text-muted);
+      line-height: 1.65; margin-bottom: 1rem; font-weight: 300;
+    }
+    .servicio-link {
+      font-size: 0.78rem; font-weight: 600; color: var(--teal);
+      text-decoration: none; letter-spacing: 0.03em;
+    }
+    .servicio-link:hover { text-decoration: underline; }
+
+    /* ─── DOCTORA / SOBRE MÍ ─── */
+    .sobre-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+
+    .sobre-visual {
+      position: relative;
+    }
+    .foto-placeholder {
+      background: linear-gradient(145deg, var(--sky) 0%, #C8DFF0 50%, #A8C8E0 100%);
+      border-radius: 20px;
+      min-height: 460px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.8rem;
+      font-size: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .foto-placeholder::after {
+      content: 'Reemplaza con foto de la doctora';
+      position: absolute; bottom: 1.5rem; left: 0; right: 0;
+      text-align: center;
+      font-size: 0.75rem; font-family: 'DM Sans', sans-serif;
+      color: rgba(11,37,69,0.35); font-weight: 400;
+    }
+
+    .sobre-badge {
+      position: absolute;
+      bottom: -1.2rem; right: -1.2rem;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 14px;
+      padding: 1rem 1.3rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+    .sobre-badge .num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: #5DDBD5; display: block; }
+    .sobre-badge .txt { font-size: 0.72rem; color: rgba(255,255,255,0.6); font-weight: 500; }
+
+    .sobre-content .section-sub { max-width: 100%; }
+    .sobre-content p { font-size: 0.95rem; color: var(--text-body); line-height: 1.85; margin-bottom: 1rem; font-weight: 300; }
+
+    .credenciales {
+      margin-top: 1.8rem;
+      display: flex; flex-direction: column; gap: 0.7rem;
+    }
+    .credencial {
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      font-size: 0.88rem; color: var(--text-body);
+    }
+    .cred-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal); margin-top: 0.5rem; flex-shrink: 0;
+    }
+
+    /* ─── PROCESO ─── */
+    .proceso-bg { background: var(--sky); }
+
+    .proceso-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; margin-top: 3rem;
+      position: relative;
+    }
+    .proceso-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--teal), var(--teal), transparent);
+      opacity: 0.3;
+    }
+
+    .paso {
+      text-align: center;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+
+    .paso-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--teal);
+      color: var(--teal);
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.2rem;
+      position: relative; z-index: 1;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .paso-titulo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem; color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .paso-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+
+    /* ─── RESEÑAS ─── */
+    .resenas-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; margin-top: 3rem;
+    }
+
+    .resena-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.6rem;
+      transition: box-shadow 0.2s;
+    }
+    .resena-card:hover { box-shadow: var(--shadow-sm); }
+
+    .resena-stars { color: #F5A623; font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .resena-texto {
+      font-size: 0.9rem; line-height: 1.7; color: var(--text-body);
+      font-weight: 300; margin-bottom: 1.3rem;
+      font-style: italic;
+    }
+    .resena-autor { font-size: 0.85rem; font-weight: 600; color: var(--navy); }
+    .resena-meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.15rem; }
+
+    /* ─── CITA ─── */
+    .cita-bg { background: var(--navy); }
+
+    .cita-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+
+    .cita-bg .section-tag { color: #5DDBD5; }
+    .cita-bg .section-title { color: #fff; }
+    .cita-bg .section-sub { color: rgba(255,255,255,0.5); max-width: 100%; }
+
+    .cita-form { display: flex; flex-direction: column; gap: 1rem; }
+    .cita-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .field label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .field input, .field select, .field textarea {
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,0.25); }
+    .field select option { background: var(--navy); color: #fff; }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: rgba(93,219,213,0.5);
+      background: rgba(255,255,255,0.09);
+    }
+    .field textarea { resize: vertical; min-height: 80px; }
+
+    .btn-cita {
+      background: var(--teal-light);
+      color: #fff; border: none;
+      padding: 0.85rem;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.3rem;
+    }
+    .btn-cita:hover { background: var(--teal); transform: translateY(-1px); }
+
+    .cita-info { padding-top: 1rem; }
+    .info-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      margin-bottom: 1.8rem;
+    }
+    .info-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .info-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #5DDBD5; margin-bottom: 0.2rem; }
+    .info-value { font-size: 0.9rem; color: rgba(255,255,255,0.75); font-weight: 300; line-height: 1.6; }
+
+    .horario-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+    .horario-table td { padding: 0.45rem 0; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .horario-table td:first-child { color: rgba(255,255,255,0.45); font-weight: 500; padding-right: 1.5rem; }
+    .horario-table td:last-child { color: rgba(255,255,255,0.75); text-align: right; }
+    .horario-table tr:last-child td { border-bottom: none; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #07172E;
+      padding: 2.5rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer-logo-text { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: rgba(255,255,255,0.7); }
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.78rem; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: #5DDBD5; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-text { padding: 3.5rem 1.5rem 2.5rem; }
+      .hero-title { font-size: 2.4rem; }
+      .hero-card-stack { padding: 2rem 1.5rem; gap: 0.8rem; }
+      .info-card:nth-child(2) { margin-left: 0; }
+
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .stat-cell:nth-child(2) { border-right: none; }
+
+      section { padding: 3.5rem 1.5rem; }
+
+      .servicios-grid { grid-template-columns: 1fr; }
+      .sobre-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .sobre-badge { bottom: 1rem; right: 1rem; }
+      .proceso-steps { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+      .proceso-steps::before { display: none; }
+      .resenas-grid { grid-template-columns: 1fr; }
+      .cita-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cita-row { grid-template-columns: 1fr; }
+
+      footer { flex-direction: column; text-align: center; gap: 1rem; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-mark">🩺</div>
+      <div class="logo-text">
+        Dra. Valeria Mora
+        <small>Medicina General & Preventiva</small>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#sobre-mi">Acerca de mí</a></li>
+      <li><a href="#resenas">Pacientes</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="#cita" class="btn btn-primary">Agendar cita</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-badge">Consultas presenciales y en línea</div>
+      <h1 class="hero-title">Tu salud,<br>en <em>buenas manos</em></h1>
+      <p class="hero-desc">Atención médica personalizada, con un enfoque preventivo y humano. Más de 15 años acompañando a familias en Guadalajara.</p>
+      <div class="hero-actions">
+        <a href="#cita" class="btn btn-primary">Agendar cita →</a>
+        <a href="#servicios" class="btn btn-outline" style="color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.2);">Ver servicios</a>
+      </div>
+      <div class="hero-note">
+        <span class="hero-note-icon">📅</span>
+        <p class="hero-note-text"><strong>Próxima disponibilidad: mañana</strong><br>Citas de lunes a sábado · Respuesta en menos de 2 hrs</p>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-stack">
+        <div class="info-card">
+          <p class="card-label">Próxima cita disponible</p>
+          <p class="card-value">Mañana — 10:30 AM</p>
+          <p class="card-sub">Consulta general · 30 min</p>
+        </div>
+        <div class="info-card">
+          <p class="card-label">Estado del consultorio</p>
+          <p class="card-value"><span class="card-dot"></span>Abierto ahora</p>
+          <p class="card-sub">Lun – Sáb · 8:00 AM – 7:00 PM</p>
+        </div>
+        <div class="info-card">
+          <p class="card-label">Atención en línea</p>
+          <p class="card-value">Videoconsulta disponible</p>
+          <p class="card-sub">Desde cualquier lugar · Zoom / Meet</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-cell">
+      <span class="stat-num">+3,200</span>
+      <span class="stat-label">Pacientes atendidos</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">15</span>
+      <span class="stat-label">Años de experiencia</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">4.9</span>
+      <span class="stat-label">Calificación Google</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num">98%</span>
+      <span class="stat-label">Pacientes satisfechos</span>
+    </div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <span class="section-tag">¿Qué ofrezco?</span>
+    <h2 class="section-title">Servicios médicos</h2>
+    <p class="section-sub">Atención integral para toda la familia, con un enfoque preventivo y de seguimiento continuo.</p>
+
+    <div class="servicios-grid">
+
+      <div class="servicio-card">
+        <div class="servicio-icon ic-teal">🩺</div>
+        <h3 class="servicio-nombre">Consulta general</h3>
+        <p class="servicio-desc">Diagnóstico y tratamiento de enfermedades agudas y crónicas. Incluye exploración física completa, historial clínico y plan de seguimiento personalizado.</p>
+        <a href="#cita" class="servicio-link">Agendar consulta →</a>
+      </div>
+
+      <div class="servicio-card">
+        <div class="servicio-icon ic-blue">🧬</div>
+        <h3 class="servicio-nombre">Medicina preventiva</h3>
+        <p class="servicio-desc">Chequeos periódicos, detección temprana de enfermedades, vacunación de adultos y niños, y orientación en estilos de vida saludables.</p>
+        <a href="#cita" class="servicio-link">Más información →</a>
+      </div>
+
+      <div class="servicio-card">
+        <div class="servicio-icon ic-soft">👶</div>
+        <h3 class="servicio-nombre">Atención pediátrica</h3>
+        <p class="servicio-desc">Control del niño sano, seguimiento del crecimiento y desarrollo, manejo de enfermedades comunes en la infancia y orientación a padres.</p>
+        <a href="#cita" class="servicio-link">Agendar para mi hijo →</a>
+      </div>
+
+      <div class="servicio-card">
+        <div class="servicio-icon ic-teal">💻</div>
+        <h3 class="servicio-nombre">Videoconsulta</h3>
+        <p class="servicio-desc">Consulta médica en línea desde la comodidad de tu hogar. Disponible para seguimientos, orientación y casos no urgentes en toda la República.</p>
+        <a href="#cita" class="servicio-link">Consulta en línea →</a>
+      </div>
+
+      <div class="servicio-card">
+        <div class="servicio-icon ic-blue">📋</div>
+        <h3 class="servicio-nombre">Gestión de crónicos</h3>
+        <p class="servicio-desc">Seguimiento continuo de diabetes, hipertensión, hipotiroidismo y otras enfermedades crónicas. Plan personalizado y ajuste de tratamientos.</p>
+        <a href="#cita" class="servicio-link">Saber más →</a>
+      </div>
+
+      <div class="servicio-card">
+        <div class="servicio-icon ic-soft">🏋️</div>
+        <h3 class="servicio-nombre">Certificados médicos</h3>
+        <p class="servicio-desc">Certificados de salud para trabajo, deporte, escuela y trámites oficiales. Apto físico, dictamen médico y constancias de salud.</p>
+        <a href="#cita" class="servicio-link">Solicitar certificado →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section id="sobre-mi" style="background:var(--sky);">
+    <div class="sobre-grid">
+      <div class="sobre-visual">
+        <div class="foto-placeholder">👩‍⚕️</div>
+        <div class="sobre-badge">
+          <span class="num">15+</span>
+          <span class="txt">años de<br>experiencia</span>
+        </div>
+      </div>
+      <div class="sobre-content">
+        <span class="section-tag">Acerca de mí</span>
+        <h2 class="section-title">Dra. Valeria Mora Castillo</h2>
+        <p class="section-sub" style="margin-bottom:1.5rem;">Médico general con especialidad en medicina preventiva y familiar, egresada de la Universidad de Guadalajara.</p>
+        <p>Creo profundamente que la mejor medicina es la que se adelanta a la enfermedad. Mi consulta está diseñada para escucharte, no para atenderte de prisa. Cada paciente merece un plan pensado para él.</p>
+        <p>He trabajado con familias de todas las edades, desde bebés recién nacidos hasta adultos mayores. Esa continuidad es lo que más valoro: conocer tu historia y ser parte de tu bienestar a largo plazo.</p>
+
+        <div class="credenciales">
+          <div class="credencial">
+            <div class="cred-dot"></div>
+            <span>Médico General · Universidad de Guadalajara, 2009</span>
+          </div>
+          <div class="credencial">
+            <div class="cred-dot"></div>
+            <span>Diplomado en Medicina Preventiva · IMSS, 2012</span>
+          </div>
+          <div class="credencial">
+            <div class="cred-dot"></div>
+            <span>Certificación en Telemedicina · TecSalud, 2021</span>
+          </div>
+          <div class="credencial">
+            <div class="cred-dot"></div>
+            <span>Cédula Profesional: 5782934 · SEP México</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="proceso-bg">
+    <div style="text-align:center; margin-bottom:0;">
+      <span class="section-tag">¿Cómo funciona?</span>
+      <h2 class="section-title">Tu cita en 4 pasos</h2>
+    </div>
+    <div class="proceso-steps">
+      <div class="paso">
+        <div class="paso-num">1</div>
+        <h3 class="paso-titulo">Agenda en línea</h3>
+        <p class="paso-desc">Llena el formulario o llámanos. Te confirmamos en menos de 2 horas con tu horario y recordatorio.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">2</div>
+        <h3 class="paso-titulo">Llegada al consultorio</h3>
+        <p class="paso-desc">Preséntate 10 minutos antes. Sin largas esperas: respetamos tu tiempo al máximo.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">3</div>
+        <h3 class="paso-titulo">Consulta personalizada</h3>
+        <p class="paso-desc">La doctora te escucha, explora y explica cada parte de tu diagnóstico con claridad.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">4</div>
+        <h3 class="paso-titulo">Seguimiento continuo</h3>
+        <p class="paso-desc">Recibes tu receta y plan por WhatsApp. Seguimiento disponible por mensaje en todo momento.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section id="resenas">
+    <span class="section-tag">Lo que dicen mis pacientes</span>
+    <h2 class="section-title">Confianza que se construye consulta a consulta</h2>
+    <div class="resenas-grid">
+
+      <div class="resena-card">
+        <p class="resena-stars">★★★★★</p>
+        <p class="resena-texto">"La Dra. Mora es increíblemente atenta. Por primera vez siento que un médico realmente me escucha. El seguimiento por WhatsApp ha sido una gran diferencia para mí."</p>
+        <p class="resena-autor">Gabriela Mendoza</p>
+        <p class="resena-meta">Paciente desde 2023 · Google</p>
+      </div>
+
+      <div class="resena-card">
+        <p class="resena-stars">★★★★★</p>
+        <p class="resena-texto">"Llevo a mis tres hijos con ella. Son muy inquietos y la doctora siempre los trata con mucha paciencia. Nos explica todo con calma y sin apresurar la consulta."</p>
+        <p class="resena-autor">Fernando Lara</p>
+        <p class="resena-meta">Paciente desde 2022 · Google</p>
+      </div>
+
+      <div class="resena-card">
+        <p class="resena-stars">★★★★★</p>
+        <p class="resena-texto">"Hice videoconsulta desde Ciudad de México y fue excelente. Me envió todo por correo, receta y todo. Ahora soy paciente permanente aunque sea a distancia."</p>
+        <p class="resena-autor">Andrea Soto</p>
+        <p class="resena-meta">Paciente desde 2024 · Doctoralia</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CITA + CONTACTO -->
+  <section id="cita" class="cita-bg">
+    <div class="cita-grid">
+
+      <div>
+        <span class="section-tag">Agenda tu consulta</span>
+        <h2 class="section-title" style="margin-bottom:0.5rem;">Reserva tu cita hoy</h2>
+        <p class="section-sub" style="margin-bottom:2rem;">Confirmamos en menos de 2 horas por WhatsApp. También puedes llamarnos directamente.</p>
+
+        <form class="cita-form" onsubmit="handleCita(event)">
+          <div class="cita-row">
+            <div class="field">
+              <label for="cn">Nombre completo</label>
+              <input type="text" id="cn" placeholder="Ej. María López" required />
+            </div>
+            <div class="field">
+              <label for="ct">Teléfono / WhatsApp</label>
+              <input type="tel" id="ct" placeholder="(33) 0000-0000" required />
+            </div>
+          </div>
+          <div class="cita-row">
+            <div class="field">
+              <label for="cf">Fecha preferida</label>
+              <input type="date" id="cf" required />
+            </div>
+            <div class="field">
+              <label for="ch">Horario preferido</label>
+              <select id="ch">
+                <option>8:00 AM – 10:00 AM</option>
+                <option>10:00 AM – 12:00 PM</option>
+                <option>12:00 PM – 2:00 PM</option>
+                <option selected>4:00 PM – 6:00 PM</option>
+                <option>6:00 PM – 7:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="cs">Tipo de consulta</label>
+            <select id="cs">
+              <option>Consulta general</option>
+              <option>Medicina preventiva / chequeo</option>
+              <option>Atención pediátrica</option>
+              <option>Videoconsulta</option>
+              <option>Manejo de enfermedad crónica</option>
+              <option>Certificado médico</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cm">Motivo o síntomas (opcional)</label>
+            <textarea id="cm" placeholder="Cuéntame brevemente el motivo de tu consulta..."></textarea>
+          </div>
+          <button type="submit" class="btn-cita" id="btn-cita">Solicitar cita →</button>
+        </form>
+      </div>
+
+      <div class="cita-info" id="contacto">
+        <div class="info-item">
+          <div class="info-icon">📍</div>
+          <div>
+            <p class="info-label">Dirección</p>
+            <p class="info-value">Av. Patria 1501, Col. Jardines de Guadalupe<br>Zapopan, Jalisco, CP 45030</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📞</div>
+          <div>
+            <p class="info-label">Teléfono y WhatsApp</p>
+            <p class="info-value">(33) 3615-2200<br>WhatsApp: (33) 1234-5678</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📧</div>
+          <div>
+            <p class="info-label">Correo</p>
+            <p class="info-value">citas@dravaleriamora.mx</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">🕐</div>
+          <div>
+            <p class="info-label">Horario de atención</p>
+            <table class="horario-table">
+              <tr><td>Lunes – Viernes</td><td>8:00 AM – 7:00 PM</td></tr>
+              <tr><td>Sábado</td><td>9:00 AM – 2:00 PM</td></tr>
+              <tr><td>Domingo</td><td>Cerrado</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">💳</div>
+          <div>
+            <p class="info-label">Formas de pago</p>
+            <p class="info-value">Efectivo · Tarjeta · Transferencia<br>Se aceptan principales seguros médicos</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo-text">Dra. Valeria Mora</div>
+    <p class="footer-copy">© 2026 Consultorio Médico · Zapopan, Jalisco · Cédula 5782934</p>
+    <div class="footer-links">
+      <a href="#">Aviso de privacidad</a>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">Doctoralia</a>
+    </div>
+  </footer>
+
+  <script>
+    // Fecha mínima = hoy
+    const hoy = new Date().toISOString().split('T')[0];
+    document.getElementById('cf').min = hoy;
+
+    function handleCita(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('cn').value.trim().split(' ')[0];
+      const btn = document.getElementById('btn-cita');
+      btn.textContent = '✓ Solicitud enviada, ' + nombre + '. Te confirmamos pronto.';
+      btn.style.background = '#1a6e40';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Solicitar cita →';
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 5000);
+    }
+  </script>
+
+</body>
+</html>
